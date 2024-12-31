@@ -5,10 +5,10 @@ const express = require('express');
 const passport = require('passport');
 const GitLabStrategy = require('passport-gitlab2').Strategy;
 const session = require('express-session');
-const path = require('path');
 const axios = require('axios');
+const path = require('path');
 
-const app = express();
+const app = express(); // Initialize Express application
 const PORT = 3000;
 
 // Configure Passport for GitLab OAuth
@@ -73,10 +73,12 @@ app.get('/repos/public/html', async (req, res) => {
   try {
     const response = await axios.get('https://gitlab.com/api/v4/projects', {
       headers: { Authorization: `Bearer ${req.user.accessToken}` },
-      params: { visibility: 'public' },
+      params: { owned: true },
     });
 
-    const renderedHTML = response.data.map(repo => `
+    const publicRepos = response.data.filter(repo => repo.visibility === 'public');
+
+    const renderedHTML = publicRepos.map(repo => `
       <div class="repo-item">
         <h3>${repo.name}</h3>
         <p><strong>Description:</strong> ${repo.description || 'No description available'}</p>
@@ -100,10 +102,12 @@ app.get('/repos/private/html', async (req, res) => {
   try {
     const response = await axios.get('https://gitlab.com/api/v4/projects', {
       headers: { Authorization: `Bearer ${req.user.accessToken}` },
-      params: { visibility: 'private' },
+      params: { owned: true },
     });
 
-    const renderedHTML = response.data.map(repo => `
+    const privateRepos = response.data.filter(repo => repo.visibility === 'private');
+
+    const renderedHTML = privateRepos.map(repo => `
       <div class="repo-item">
         <h3>${repo.name}</h3>
         <p><strong>Description:</strong> ${repo.description || 'No description available'}</p>
