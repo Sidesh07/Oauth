@@ -1,19 +1,107 @@
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background: #f0f0f0;
-    color: #333;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #84fab0, #8fd3f4);
+    color: #444;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
     text-align: center;
-    margin-top: 50px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 600px;
+}
+
+/* Headings */
+h1 {
+    font-size: 2.5rem;
+    color: #00796b;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+button, .login-button, .logout-button {
+    display: inline-block;
+    background: #00bcd4;
+    color: white;
+    font-size: 1rem;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 10px 5px;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+button:hover, .login-button:hover, .logout-button:hover {
+    background: #008ba3;
+    transform: translateY(-2px);
+}
+
+/* Repository List */
+.repo-list {
+    margin-top: 20px;
+    text-align: left;
+    max-width: 600px;
+    margin: 20px auto;
 }
 
 .repo-item {
-    border: 1px solid #ddd;
-    background: #fff;
+    background: #f1f8e9;
+    border-left: 6px solid #43a047;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.repo-item h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #2e7d32;
+}
+
+.repo-item p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.repo-item a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #00796b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.repo-item a:hover {
+    text-decoration: underline;
+}
+
+/* Additional Styling for Notices */
+.notice {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 10px;
+    background: #fff9c4;
     padding: 10px;
-    margin: 10px 0;
+    border-radius: 5px;
 }
