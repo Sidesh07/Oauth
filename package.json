@@ -1,0 +1,17 @@
+{
+  "name": "gitlab-oauth-login",
+  "version": "1.0.0",
+  "description": "Node.js application to demonstrate GitLab OAuth login.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "passport": "^0.6.0",
+    "passport-gitlab2": "^1.2.2"
+  }
+}
