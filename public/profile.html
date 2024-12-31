@@ -17,14 +17,38 @@
                 document.getElementById('repo-list').innerHTML = '<p>Error loading repositories</p>';
             }
         }
+
+        async function fetchRepoFiles(repoId) {
+            try {
+                const response = await fetch(`/repos/${repoId}/files`);
+                if (!response.ok) throw new Error('Failed to fetch files');
+
+                const html = await response.text();
+                document.getElementById('file-list').innerHTML = html;
+            } catch (error) {
+                document.getElementById('file-list').innerHTML = '<p>Error loading files</p>';
+            }
+        }
+
+        function cloneRepo(url) {
+            const cloneCommand = `git clone ${url}`;
+            navigator.clipboard.writeText(cloneCommand).then(() => {
+                alert('Clone command copied to clipboard!');
+            }).catch(() => {
+                alert('Failed to copy the clone command.');
+            });
+        }
     </script>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome!</h1>
+        <h1>Your GitLab Repositories</h1>
+        <p>Choose what you want to explore:</p>
         <button onclick="fetchReposHTML('public')">Show Public Repos</button>
         <button onclick="fetchReposHTML('private')">Show Private Repos</button>
         <div id="repo-list" class="repo-list"></div>
+        <h2>Files in Selected Repository</h2>
+        <div id="file-list" class="repo-list"></div>
         <a class="logout-button" href="/logout">Logout</a>
     </div>
 </body>
